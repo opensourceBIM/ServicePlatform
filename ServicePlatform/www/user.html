@@ -1,0 +1,20 @@
+<div class="user">
+	<h2>User page</h2>
+	<button class="btn btn-default btnLogout">Logout</button>
+	<table class="table">
+		<thead></thead>
+		<tbody></tbody>
+	</table>
+</div>
+<script>
+function User(cd, uid, username) {
+	cd.find(".table tbody").append("<tr><td>User ID</td><td>" + uid + "</td></tr>");
+	cd.find(".table tbody").append("<tr><td>Username</td><td>" + username + "</td></tr>");
+	
+	cd.find(".btnLogout").click(function(){
+		post("/api/logout", {}, function(){
+			$(".content").load("start.html");
+		});
+	});
+}
+</script>

@@ -1,0 +1,32 @@
+<h2>Authorize</h2>
+<h3>Review permissions</h3>
+<div class="panel">
+	<div class="panel-heading"></div>
+	<div class="panel-body"></div>
+	<div class="panel-footing"></div>
+</div>
+<ul>
+	<li>Get a list of profiles</li>
+	<li>Utilize a profile</li>
+</ul>
+<button class="btn btn-primary authorizeBtn">Authorize Application</button>
+<button class="btn btn-default cancelBtn">Deny</button>
+<script>
+var url = window.location.hash.substring(1);
+var clientId = url.substring(url.indexOf("client_id=") + 10);
+clientId = clientId.substring(0, clientId.indexOf("&"));
+
+$(".authorizeBtn").click(function(){
+	post("/api/authorize", {
+		applicationId: clientId
+	}, function(data){
+		window.location = "/api/authz?" + window.location.hash.substring(11);
+	});
+});
+
+post("/api/application/details", {applicationId: clientId}, function(data){
+	$(".panel-body").append("<h2>" + data.data.name + "</h2>");
+	$(".panel-body").append("<p>" + data.data.description + "</p>");
+	$(".panel-body").append("<img src=\">" + data.data.icon + "\">");
+});
+</script>

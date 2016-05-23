@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Service Platform - Demo</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/sport_raquet.png">
+  </head>
+  <body>
+	<div class="container">
+	    <h1>Service Platform - Demo</h1>
+		<div class="content">
+		</div>
+	</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script>
+    	if (window.location.hash) {
+    		var hash = window.location.hash;
+    		if (hash.substring(0, 6) == "#login") {
+				$(".content").load("login.html", function(){
+					new Login($(this));
+				});
+    		} else if (hash.substring(0, 10) == "#authorize") {
+    			$(".content").load("authorize.html");
+    		}
+    	} else {
+			$(".content").load("start.html", function(){
+				new Start();
+			});
+    	}
+    </script>
+  </body>
+</html>

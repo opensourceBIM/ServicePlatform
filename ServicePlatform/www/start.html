@@ -1,0 +1,22 @@
+<div class="start">
+	<button class="btn btn-default registerBtn">Register</button>
+	<button class="btn btn-default loginBtn">Login</button>
+</div>
+<script>
+function Start(){
+	post("/api/isloggedin", {
+	}, function(data){
+		if (data.data.loggedin) {
+			$(".content").load("user.html", function(){
+				new User($(this), data.data.userid, data.data.username);
+			});
+		} else {
+			$(".loginBtn").click(function(){
+				$(".content").load("login.html", function(){
+					new Login($(this));
+				});
+			});	
+		}
+	});
+}
+</script>

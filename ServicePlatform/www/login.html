@@ -1,0 +1,30 @@
+<div class="login">
+	<h2>login</h2>
+	<div class="message"></div>
+	Username <input class="form-control username"/>
+	Password <input class="form-control password"/>
+	<button class="loginBtn btn btn-primary">Login</button>
+</div>
+<script>
+function Login(cd) {
+	$(".loginBtn").click(function(){
+		$(".message").removeClass("alert").removeClass("alert-danger").hide();
+		post("/api/login", {
+			username: $(".username").val(),
+			password: $(".password").val()
+		}, function(data){
+			if (window.location.hash != "") {
+				window.location = "/api/authz/" + window.location.hash.substring(6);
+			} else {
+				$(".content").load("user.html", function(){
+					new User($(this), data.data.userid, data.data.username);
+				});
+			}
+		}, function(error){
+			$(".message").addClass("alert").addClass("alert-danger").html(error).show();
+		});
+		
+	});
+	cd.find(".username").focus();
+}
+</script>
