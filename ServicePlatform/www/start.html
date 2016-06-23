@@ -10,13 +10,19 @@ function Start(){
 			$(".content").load("user.html", function(){
 				new User($(this), data.data.userid, data.data.username);
 			});
-		} else {
-			$(".loginBtn").click(function(){
-				$(".content").load("login.html", function(){
-					new Login($(this));
-				});
-			});	
 		}
 	});
+
+	$(".registerBtn").click(function(){
+		$(".content").load("register.html", function(){
+			new Register($(this));
+		});
+	});
+	
+	$(".loginBtn").click(function(){
+		$(".content").load("login.html", function(){
+			new Login($(this));
+		});
+	});	
 }
 </script>
