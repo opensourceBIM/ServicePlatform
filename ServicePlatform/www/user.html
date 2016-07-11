@@ -1,19 +1,49 @@
 <div class="user">
 	<h2>User page</h2>
 	<button class="btn btn-default btnLogout">Logout</button>
-	<table class="table">
+	<h3>User details</h3>
+	<table class="table details">
+		<thead></thead>
+		<tbody></tbody>
+	</table>
+	<h3>Tokens</h3>
+	BIMserver address: <input type="text" class="form-control endpointInp" value="http://localhost:8080"/>
+	<button class="btn btn-primary btnRequestAuth">Request auth</button>
+	<table class="table tokens">
 		<thead></thead>
 		<tbody></tbody>
 	</table>
 </div>
 <script>
 function User(cd, uid, username) {
-	cd.find(".table tbody").append("<tr><td>User ID</td><td>" + uid + "</td></tr>");
-	cd.find(".table tbody").append("<tr><td>Username</td><td>" + username + "</td></tr>");
-	
+	cd.find(".details.table tbody").append("<tr><td>User ID</td><td>" + uid + "</td></tr>");
+	cd.find(".details.table tbody").append("<tr><td>Username</td><td>" + username + "</td></tr>");
+
 	cd.find(".btnLogout").click(function(){
 		post("/api/logout", {}, function(){
 			$(".content").load("start.html");
+		});
+	});
+	
+	cd.find(".btnRequestAuth").click(function(){
+		var baseUrl = $(".endpointInp").val();
+		
+		var getUrl = window.location;
+		var clientBaseUrl = getUrl.protocol + "//" + getUrl.host + getUrl.pathname;
+		
+		var iconUrl = clientBaseUrl + "img/sport_raquet.png";
+		
+		post2(baseUrl + "/oauth/register", {
+			redirect_url: document.location.href,
+			client_name: "test",
+			client_description: "test",
+			client_icon:  iconUrl,
+			client_url: "test",
+			type: "pull"
+		}, function(response){
+			var json = JSON.parse(response);
+			var newUrl = baseUrl + "/oauth/" + "?redirect_uri=" + document.location.href + "&response_type=code&client_id=" + json.client_id + "&auth_type=singleproject";
+			document.location = newUrl;
 		});
 	});
 }

@@ -5,12 +5,29 @@ function post(url, data, callback, errorCallback) {
 		data: JSON.stringify(data)
 	};
 	$.ajax(url, settings).done(function(data) {
-		console.log(data);
 		if (data.message != "OK") {
-			errorCallback(data.code + ": " + data.message);
+			if (errorCallback != null) {
+				errorCallback(data.code + ": " + data.message);
+			} else {
+				console.error(data.code, data.message, data);
+			}
 		} else {
 			callback(data);
 		}
+	  })
+	  .fail(function() {
+	    console.error("login");
+	  });
+}
+
+function post2(url, data, callback, errorCallback) {
+	var settings = {
+		contentType: "application/json",
+		type: "POST",
+		data: JSON.stringify(data)
+	};
+	$.ajax(url, settings).done(function(data) {
+		callback(data);
 	  })
 	  .fail(function() {
 	    console.error("login");

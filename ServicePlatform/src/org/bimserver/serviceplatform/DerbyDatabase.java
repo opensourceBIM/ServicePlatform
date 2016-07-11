@@ -163,4 +163,16 @@ public class DerbyDatabase implements Database {
 		}
 		return false;
 	}
+
+	@Override
+	public void storeOAuthToken(long userId, String bimServer, String token) {
+//		try {
+//			PreparedStatement statement = conn.prepareStatement("INSERT INTO user_application (user_id, application_id) VALUES (?, ?)");
+//			statement.setLong(1, userId);
+//			statement.setString(2, applicationId);
+//			statement.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+	}
 }

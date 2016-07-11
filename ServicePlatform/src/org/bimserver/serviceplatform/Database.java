@@ -10,4 +10,5 @@ public interface Database {
 	boolean isNew();
 	boolean userAllowsApplication(long userId, String applicationId);
 	void allowApplication(long userId, String applicationId);
+	void storeOAuthToken(long userId, String bimServer, String token);
 }
