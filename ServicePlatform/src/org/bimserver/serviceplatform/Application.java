@@ -1,7 +1,5 @@
 package org.bimserver.serviceplatform;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 public class Application {
 
 	private String clientName;

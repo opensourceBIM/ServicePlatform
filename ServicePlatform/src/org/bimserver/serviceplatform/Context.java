@@ -1,7 +1,5 @@
 package org.bimserver.serviceplatform;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.bimserver.serviceplatform.actionmgmt.ActionFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;

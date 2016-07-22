@@ -2,8 +2,6 @@ package org.bimserver.serviceplatform.actions;
 
 import org.bimserver.serviceplatform.RequestParameters;
 import org.bimserver.serviceplatform.ServerException;
-import org.bimserver.serviceplatform.ServicePlatform;
-import org.bimserver.serviceplatform.User;
 import org.bimserver.serviceplatform.UserException;
 import org.bimserver.serviceplatform.actionmgmt.GetAction;
 import org.bimserver.serviceplatform.actionmgmt.RedirectException;
